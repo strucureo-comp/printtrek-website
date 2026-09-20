@@ -42,9 +42,8 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-colors hover:text-brass ${
-                pathname === link.href ? 'text-brass' : 'text-concrete-muted'
-              }`}
+              className={`transition-colors hover:text-brass ${pathname === link.href ? 'text-brass' : 'text-concrete-muted'
+                }`}
             >
               {link.label}
             </Link>
@@ -54,11 +53,10 @@ export default function Navbar() {
         <div className="flex-1 flex justify-end gap-2 md:gap-4 items-center">
           <Link
             href={accountHref}
-            className={`hidden md:flex border rounded-full px-4 py-1.5 items-center gap-2 text-[10px] font-medium uppercase tracking-wider transition-colors ${
-              pathname === '/profile' || pathname === '/login'
-                ? 'border-brass text-brass'
-                : 'border-obsidian/20 text-concrete-muted hover:border-brass hover:text-brass'
-            }`}
+            className={`hidden md:flex border rounded-full px-4 py-1.5 items-center gap-2 text-[10px] font-medium uppercase tracking-wider transition-colors ${pathname === '/profile' || pathname === '/login'
+              ? 'border-brass text-brass'
+              : 'border-obsidian/20 text-concrete-muted hover:border-brass hover:text-brass'
+              }`}
           >
             {accountLabel}
           </Link>
@@ -179,11 +177,8 @@ export function Footer() {
         </div>
 
         <div className="flex justify-start md:justify-end">
-          <h1 className="text-[5rem] md:text-[9rem] font-serif-display font-bold tracking-tighter leading-[0.8] -mb-4 -mr-2 text-left md:text-right text-obsidian/8">
-            print
-            <br />
-            trek
-          </h1>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Print Trek — Precision 3D Lab" className="h-24 w-auto mb-6" />
         </div>
 
         <div className="border-t border-obsidian/10 mt-12 pt-6">

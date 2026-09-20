@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     'Precision 3D lab building 3CM matte black shadow frames for anime walls. Chennai factory, ships worldwide.',
   authors: [{ name: 'Strucureo', url: 'https://strucureo.com' }],
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: '/logo.png' },
 };
 
 export default function RootLayout({
