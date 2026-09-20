@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --obsidian: 0 0% 4%;
+    --obsidian-soft: 0 0% 8%;
+    --concrete: 40 25% 95%;
+    --concrete-mid: 40 14% 85%;
+    --concrete-dim: 40 8% 55%;
+    --concrete-muted: 40 5% 42%;
+    --brass: 37 50% 60%;
+    --brass-dim: 37 35% 45%;
+    --matte-black: 0 0% 7%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--concrete));
+    color: hsl(var(--obsidian));
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-serif-display {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .bg-concrete { background-color: hsl(var(--concrete)); }
+  .bg-concrete-mid { background-color: hsl(var(--concrete-mid)); }
+  .bg-obsidian { background-color: hsl(var(--obsidian)); }
+  .bg-obsidian-soft { background-color: hsl(var(--obsidian-soft)); }
+  .text-obsidian { color: hsl(var(--obsidian)); }
+  .text-obsidian-soft { color: hsl(var(--obsidian-soft)); }
+  .text-concrete { color: hsl(var(--concrete)); }
+  .text-concrete-dim { color: hsl(var(--concrete-dim)); }
+  .text-concrete-muted { color: hsl(var(--concrete-muted)); }
+  .text-brass { color: hsl(var(--brass)); }
+  .text-brass-dim { color: hsl(var(--brass-dim)); }
+  .bg-brass { background-color: hsl(var(--brass)); }
+  .border-brass { border-color: hsl(var(--brass)); }
+  .border-obsidian { border-color: hsl(var(--obsidian)); }
+  .border-obsidian-soft { border-color: hsl(var(--obsidian-soft)); }
+  .border-concrete-dim { border-color: hsl(var(--concrete-dim)); }
+}
