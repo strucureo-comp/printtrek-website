@@ -25,26 +25,52 @@ let googleProvider: GoogleAuthProvider | null = null;
 export function isFirebaseConfigured(): boolean {
   return Boolean(
     firebaseConfig.apiKey &&
-      firebaseConfig.databaseURL &&
-      firebaseConfig.appId
+      firebaseConfig.appId &&
+      isValidDatabaseURL(firebaseConfig.databaseURL)
+  );
+}
+
+/** The SDK throws a FATAL error on a missing/malformed URL — catch that
+ *  here so the site degrades to offline mode instead of crashing. */
+function isValidDatabaseURL(url: string | undefined): boolean {
+  return (
+    !!url &&
+    /^https:\/\/[a-z0-9.-]+\.(firebaseio\.com|firebasedatabase\.app)\/?$/i.test(url)
   );
 }
 
 export function getFirebaseApp(): FirebaseApp | null {
-  if (!isFirebaseConfigured()) return null;
-  if (!getApps().length) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    app = getApps()[0]!;
+  if (!isFirebaseConfigured()) {
+    if (typeof window !== 'undefined') {
+      console.warn(
+        '[firebase] NEXT_PUBLIC_FIREBASE_* env vars missing or databaseURL malformed — running offline. Check .env.local and restart the dev server.'
+      );
+    }
+    return null;
   }
-  return app;
+  try {
+    if (!getApps().length) {
+      app = initializeApp(firebaseConfig);
+    } else {
+      app = getApps()[0]!;
+    }
+    return app;
+  } catch (e) {
+    console.warn('[firebase] init failed, running offline:', e);
+    return null;
+  }
 }
 
 export function getRTDB(): Database | null {
   const firebaseApp = getFirebaseApp();
   if (!firebaseApp) return null;
-  if (!db) db = getDatabase(firebaseApp);
-  return db;
+  try {
+    if (!db) db = getDatabase(firebaseApp);
+    return db;
+  } catch (e) {
+    console.warn('[firebase] getDatabase failed, running offline:', e);
+    return null;
+  }
 }
 
 /** Firebase Auth (free tier). Requires Email/Password and/or Google
@@ -53,8 +79,13 @@ export function getRTDB(): Database | null {
 export function getFirebaseAuth(): Auth | null {
   const firebaseApp = getFirebaseApp();
   if (!firebaseApp) return null;
-  if (!auth) auth = getAuth(firebaseApp);
-  return auth;
+  try {
+    if (!auth) auth = getAuth(firebaseApp);
+    return auth;
+  } catch (e) {
+    console.warn('[firebase] getAuth failed, running offline:', e);
+    return null;
+  }
 }
 
 export function getGoogleProvider(): GoogleAuthProvider {
