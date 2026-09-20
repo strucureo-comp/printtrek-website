@@ -170,9 +170,9 @@ export default function HomePage() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="group cursor-pointer"
+              className="group"
             >
-              <Link href={`/shop/${prod.slug || prod.id}`} aria-label={prod.title}>
+              <Link href={`/shop/${prod.slug || prod.id}`} aria-label={prod.title} className="block">
                 <div className="bg-obsidian rounded-lg aspect-square overflow-hidden relative">
                   <img
                     src={prod.img}
@@ -185,16 +185,14 @@ export default function HomePage() {
                     </div>
                   )}
                 </div>
-              </Link>
-              <div className="mt-4">
-                <div className="flex justify-between font-medium text-sm text-obsidian">
-                  <Link href={`/shop/${prod.slug || prod.id}`} className="tracking-tight hover:text-brass transition-colors">
-                    <h3>{prod.title}</h3>
-                  </Link>
-                  <span className="text-brass">{prod.price}</span>
+                <div className="mt-4">
+                  <div className="flex justify-between font-medium text-sm text-obsidian">
+                    <h3 className="tracking-tight group-hover:text-brass transition-colors">{prod.title}</h3>
+                    <span className="text-brass">{prod.price}</span>
+                  </div>
+                  <p className="text-sm mt-1 text-concrete-muted">{prod.desc}</p>
                 </div>
-                <p className="text-sm mt-1 text-concrete-muted">{prod.desc}</p>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
