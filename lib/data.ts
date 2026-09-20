@@ -42,7 +42,7 @@ export const faqs: Faq[] = [
   },
   {
     q: 'How does the custom lab work?',
-    a: 'Send us your art or idea via Instagram DM (keyword: SHADOW). We design, print, and ship your custom shadow frame within 24 hours. One idea, one frame, one day.',
+    a: 'Send us your art or idea on Instagram @print_.trek. We design, print, and ship your custom shadow frame within 24 hours. One idea, one frame, one day.',
   },
   {
     q: 'Why matte black and not gloss?',

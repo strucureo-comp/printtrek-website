@@ -142,7 +142,7 @@ export default function ProfilePage() {
 
   async function saveAddress() {
     const db = getRTDB();
-    if (!db) return flash('Firebase not configured.');
+    if (!db) return flash("Couldn't reach the server. Please try again.");
     if (!user) return;
     if (!form.name.trim() || !form.line1.trim() || !form.city.trim() || !form.pincode.trim()) {
       return flash('Name, street, city and pincode are required.');

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, ArrowDownRight, Plus, Gift, Package, Wifi, WifiOff } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Plus, Gift, Package } from 'lucide-react';
 import { push, ref } from 'firebase/database';
 import { getRTDB, RTDB_NODES } from '@/lib/firebase';
 import { useLiveTransactions } from '@/lib/store';
@@ -16,7 +16,7 @@ export default function BalancePage() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState('');
 
-  const { items: transactions, live, loading } = useLiveTransactions();
+  const { items: transactions, loading } = useLiveTransactions();
 
   const balance = useMemo(
     () => transactions.reduce((s, t) => s + Number(t.amount || 0), 0),
@@ -36,7 +36,7 @@ export default function BalancePage() {
   async function writeEntry(desc: string, value: number, type: 'credit' | 'debit') {
     const db = getRTDB();
     if (!db) {
-      setMsg('Balance is offline — add Firebase env vars, then top-ups go live.');
+      setMsg("Couldn't reach the server. Please try again.");
       return false;
     }
     await push(ref(db, RTDB_NODES.transactions), {
@@ -94,13 +94,8 @@ export default function BalancePage() {
         className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6"
       >
         <div>
-          <p className="text-[10px] font-medium tracking-widest uppercase text-brass mb-2 flex items-center gap-2">
-            Lab Account ·{' '}
-            {live ? (
-              <span className="inline-flex items-center gap-1 text-brass"><Wifi size={12} /> Live</span>
-            ) : (
-              <span className="inline-flex items-center gap-1 text-concrete-muted"><WifiOff size={12} /> Not connected</span>
-            )}
+          <p className="text-[10px] font-medium tracking-widest uppercase text-brass mb-2">
+            Lab Account
           </p>
           <h1 className="text-5xl md:text-7xl font-serif-display font-bold tracking-tighter leading-none text-obsidian">
             Your<br />Balance
@@ -179,7 +174,7 @@ export default function BalancePage() {
         <div className="absolute -right-4 -bottom-20 w-64 h-64 rounded-full border border-concrete/5" />
         <div className="relative z-10">
           <p className="text-[10px] font-medium tracking-widest uppercase text-concrete-dim mb-4">
-            Available Store Credit {loading ? '· syncing…' : live ? '· live from Firebase' : '· not connected'}
+            Available Store Credit{loading ? '…' : ''}
           </p>
           <div className="flex items-end gap-2 mb-8">
             <motion.span

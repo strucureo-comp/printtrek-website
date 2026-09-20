@@ -237,13 +237,13 @@ export default function HomePage() {
             Chennai Lab · Worldwide
           </p>
           <h3 className="text-2xl md:text-3xl font-serif-display font-bold tracking-tight mb-6 max-w-md text-obsidian">
-            $29, not $80.
+            Cast in the lab. Made for your wall.
           </h3>
           <p className="text-sm leading-relaxed mb-6 max-w-md text-concrete-muted">
-            Chennai lab cost means we ship worldwide at a price that makes sense.
-            Same 3CM depth. Same matte black. Same HueForge layers. Half the Etsy
-            price. Every frame is printed, finished, and QC&apos;d in our lab,
-            then shipped in a hard box.
+            Every frame is printed at 0.16mm layer height, hand-finished in
+            matte black, and QC&apos;d one by one in our Chennai lab. 3CM of
+            real depth, layered relief, zero gloss — then shipped worldwide
+            in a hard box, ready to hang.
           </p>
           <Link
             href="/shop"
@@ -266,8 +266,8 @@ export default function HomePage() {
             Your wall is flat.<br />Fix that.
           </h2>
           <p className="text-sm text-concrete-muted mb-8 max-w-lg mx-auto">
-            DM us on Instagram with the keyword SHADOW for the full catalog.
-            Or browse the shop.
+            The full collection lives here — every frame in stock, ready to
+            ship worldwide from the Chennai lab.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link

@@ -59,7 +59,7 @@ export default function AdminPage() {
   const [tab, setTab] = useState<Tab>('products');
   const [msg, setMsg] = useState('');
 
-  const { items: products, live, loading: productsLoading } = useLiveProducts();
+  const { items: products, loading: productsLoading } = useLiveProducts();
   const { items: orders } = useLiveOrders();
   const { items: users } = useLiveUsers();
   const { items: posts } = useLiveJournal();
@@ -75,7 +75,7 @@ export default function AdminPage() {
       setAuthed(true);
       setMsg('');
     } else {
-      flash('Wrong admin key. Check .env.local → NEXT_PUBLIC_ADMIN_KEY.');
+      flash('Wrong admin key. Please try again.');
     }
   }
 
@@ -89,9 +89,8 @@ export default function AdminPage() {
           Admin Panel
         </h1>
         <p className="text-sm text-concrete-muted mb-8">
-          Enter the admin key from <code>.env.local</code> (
-          <code>NEXT_PUBLIC_ADMIN_KEY</code>) to manage products, orders, users
-          and journal posts in Firebase RTDB.
+          Enter the admin key to manage products, orders, users
+          and journal posts.
         </p>
         <div className="flex gap-2">
           <input
@@ -122,14 +121,13 @@ export default function AdminPage() {
       <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-end mb-8">
         <div>
           <p className="text-[10px] font-medium tracking-widest uppercase text-brass mb-2">
-            Print Trek · Admin {configured ? '' : '· Firebase missing'}
+            Print Trek · Admin
           </p>
           <h1 className="text-4xl md:text-5xl font-serif-display font-bold tracking-tight text-obsidian">
             Control Room
           </h1>
           <p className="text-xs text-concrete-muted mt-2">
-            {live ? '● connected to Firebase' : '○ not connected'} ·{' '}
-            {productsLoading ? 'syncing…' : `${products.length} products`} ·{' '}
+            {productsLoading ? 'Loading…' : `${products.length} products`} ·{' '}
             {orders.length} orders · {users.length} users · {posts.length} posts
           </p>
         </div>
@@ -148,9 +146,8 @@ export default function AdminPage() {
 
       {!configured && (
         <div className="border border-brass/40 bg-brass/10 rounded-lg p-4 text-xs mb-8">
-          Firebase env vars are missing. Create <code>.env.local</code> from{' '}
-          <code>.env.example</code> with your apiKey / databaseURL / appId, then
-          restart <code>npm run dev</code>.
+          The server can&apos;t be reached — data won&apos;t load or save until
+          the connection is restored.
         </div>
       )}
 
@@ -398,7 +395,7 @@ function ImageField({
         const { dataUrl, bytes: b } = await fileToBase64Resized(file);
         setBytes(b);
         if (b > 500 * 1024) {
-          onFlash('Image is large for RTDB free tier — it will save, but smaller photos are safer.');
+          onFlash('Image is large — it will save, but smaller photos load faster.');
         }
         onChange(dataUrl);
       }
@@ -411,7 +408,7 @@ function ImageField({
   function onCropConfirm(dataUrl: string, b: number) {
     setBytes(b);
     if (b > 500 * 1024) {
-      onFlash('Cropped image is large for RTDB free tier — consider a smaller zoom.');
+      onFlash('Cropped image is large — consider zooming out for a smaller file.');
     }
     onChange(dataUrl);
     setCropSrc(null);
@@ -431,7 +428,7 @@ function ImageField({
         <ImagePlus size={16} className="text-brass shrink-0" />
         {isBase64
           ? `Base64 ready${bytes ? ` (${formatBytes(bytes)})` : ''} — click to replace`
-          : 'Upload photo → stored as base64 in RTDB (free tier)'}
+          : 'Upload photo — saved automatically with the entry'}
         <input type="file" accept="image/*" className="hidden" onChange={onFile} />
       </label>
       {squareCrop && isBase64 && (

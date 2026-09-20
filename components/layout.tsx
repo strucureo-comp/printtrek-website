@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Menu, X, ArrowRight } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { navLinks } from '@/lib/data';
 import { useAuth } from '@/lib/auth';
 import { useCart } from '@/lib/cart';
@@ -155,10 +155,21 @@ export function Footer() {
             </div>
             <div>
               <h4 className="font-medium text-xs uppercase mb-4 text-brass tracking-wider">
+                Support
+              </h4>
+              <ul className="space-y-2 text-xs text-concrete-muted">
+                <li><Link href="/shipping" className="hover:text-brass transition-colors">Shipping Policy</Link></li>
+                <li><Link href="/returns" className="hover:text-brass transition-colors">Returns & Refunds</Link></li>
+                <li><Link href="/terms" className="hover:text-brass transition-colors">Terms of Service</Link></li>
+                <li><Link href="/faq" className="hover:text-brass transition-colors">FAQ</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-medium text-xs uppercase mb-4 text-brass tracking-wider">
                 Lab
               </h4>
               <ul className="space-y-2 text-xs text-concrete-muted">
-                <li>Chennai, India</li>
+                <li>Chennai, Tamil Nadu, India</li>
                 <li>0.16mm Layer Height</li>
                 <li>3CM Depth Standard</li>
                 <li>Matte Black Finish</li>
@@ -167,33 +178,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-          <div className="max-w-md">
-            <h4 className="font-medium text-sm uppercase mb-2 tracking-wider">
-              Join The Lab
-            </h4>
-            <p className="text-xs mb-4 text-concrete-muted">
-              Limited drops. Custom slots. No noise. Just shadows.
-            </p>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Email address"
-                className="w-full border border-obsidian/15 rounded px-4 py-2 text-sm focus:outline-none focus:border-brass bg-concrete text-obsidian"
-              />
-              <button className="uppercase text-[10px] font-medium tracking-widest px-4 py-2 rounded flex items-center justify-center gap-2 transition-colors cursor-pointer bg-obsidian text-concrete hover:bg-obsidian-soft w-1/2">
-                Sign Up <ArrowRight size={14} />
-              </button>
-            </form>
-          </div>
-
-          <div className="flex justify-start md:justify-end">
-            <h1 className="text-[5rem] md:text-[9rem] font-serif-display font-bold tracking-tighter leading-[0.8] -mb-4 -mr-2 text-left md:text-right text-obsidian/8">
-              print
-              <br />
-              trek
-            </h1>
-          </div>
+        <div className="flex justify-start md:justify-end">
+          <h1 className="text-[5rem] md:text-[9rem] font-serif-display font-bold tracking-tighter leading-[0.8] -mb-4 -mr-2 text-left md:text-right text-obsidian/8">
+            print
+            <br />
+            trek
+          </h1>
         </div>
 
         <div className="border-t border-obsidian/10 mt-12 pt-6">

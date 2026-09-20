@@ -140,7 +140,7 @@ export default function AboutPage() {
         </div>
         <div className="mt-8">
           <p className="text-sm text-concrete-muted mb-4">
-            DM keyword: <span className="font-bold text-brass">SHADOW</span> for the full catalog.
+            For custom pieces, message us on Instagram — one idea, one frame, one day.
           </p>
           <Link
             href="/shop"

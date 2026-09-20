@@ -70,7 +70,7 @@ function SmallCard({ post, index }: { post: DBJournal; index: number }) {
 }
 
 export default function JournalPage() {
-  const { items: posts, loading, live } = useLiveJournal();
+  const { items: posts, loading } = useLiveJournal();
   const [hero, ...rest] = posts;
   const side = rest.slice(0, 2);
   const grid = rest.slice(2);
@@ -93,7 +93,6 @@ export default function JournalPage() {
           className="text-xs font-medium uppercase tracking-widest max-w-xs text-right text-concrete-muted"
         >
           Process notes from the Chennai lab. Depth, craft, and shadows.
-          {!loading && live && posts.length > 0 && ` · ${posts.length} live`}
         </motion.p>
       </div>
 

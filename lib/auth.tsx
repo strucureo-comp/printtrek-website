@@ -96,7 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = useCallback(async (name: string, email: string, password: string) => {
     const auth = getFirebaseAuth();
-    if (!auth) throw new Error('Firebase not configured. Fill .env.local first.');
+    if (!auth) throw new Error('Something went wrong. Please try again.');
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     if (name.trim()) {
       await updateProfile(cred.user, { displayName: name.trim() });
@@ -107,14 +107,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = useCallback(async (email: string, password: string) => {
     const auth = getFirebaseAuth();
-    if (!auth) throw new Error('Firebase not configured. Fill .env.local first.');
+    if (!auth) throw new Error('Something went wrong. Please try again.');
     const cred = await signInWithEmailAndPassword(auth, email, password);
     await syncUserRecord(cred.user);
   }, []);
 
   const signInWithGoogle = useCallback(async () => {
     const auth = getFirebaseAuth();
-    if (!auth) throw new Error('Firebase not configured. Fill .env.local first.');
+    if (!auth) throw new Error('Something went wrong. Please try again.');
     const cred = await signInWithPopup(auth, getGoogleProvider());
     await syncUserRecord(cred.user);
   }, []);

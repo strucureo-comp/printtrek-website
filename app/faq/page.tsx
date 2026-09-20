@@ -24,7 +24,7 @@ export default function FaqPage() {
         transition={{ delay: 0.2 }}
         className="text-sm text-concrete-muted mb-16 max-w-lg"
       >
-        Short answers. No noise. DM @print_.trek with keyword SHADOW for anything else.
+        Short answers. No noise. Message @print_.trek for anything else.
       </motion.p>
       <div className="border-t border-obsidian">
         {faqs.map((faq, idx) => (

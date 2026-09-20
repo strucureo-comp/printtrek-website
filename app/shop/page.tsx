@@ -21,7 +21,7 @@ type Filter = 'All' | 'Anime' | 'Movies' | 'Custom';
 
 export default function ShopPage() {
   const [filter, setFilter] = useState<Filter>('All');
-  const { items: products, live, loading } = useLiveProducts();
+  const { items: products, loading } = useLiveProducts();
   const { add } = useCart();
 
   const filtered = products.filter((p) =>
@@ -40,9 +40,6 @@ export default function ShopPage() {
           Shadow<br />Frames
         </motion.h1>
         <div className="flex gap-4 items-center">
-          <span className="text-[10px] uppercase tracking-widest text-concrete-muted hidden md:inline">
-            {loading ? 'syncing…' : live ? `● ${products.length} live` : '○ offline'}
-          </span>
           {(['All', 'Anime', 'Movies', 'Custom'] as const).map((f) => (
             <button
               key={f}
@@ -66,7 +63,7 @@ export default function ShopPage() {
           </p>
           <p className="text-sm text-concrete-muted">
             {products.length === 0
-              ? 'Our first real frames are being added — check back soon or DM us on Instagram.'
+              ? 'Our first real frames are being added — check back soon.'
               : 'Try a different category.'}
           </p>
         </div>
