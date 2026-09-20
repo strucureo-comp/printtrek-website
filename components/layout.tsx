@@ -33,7 +33,7 @@ export default function Navbar() {
             aria-label="Print Trek home"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="Print Trek" className="h-8 md:h-9 w-auto" />
+            <img src="/logo.png" alt="Print Trek" className="h-8 md:h-9 w-auto" />
           </Link>
         </div>
 
@@ -123,7 +123,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           <div className="md:col-span-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-footer.svg" alt="Print Trek — Precision 3D Lab" className="h-24 w-auto mb-6" />
+            <img src="/logo-footer.png" alt="Print Trek — Precision 3D Lab" className="h-24 w-auto mb-6" />
             <p className="text-xs uppercase tracking-widest leading-loose text-concrete-muted">
               Print Trek. A precision 3D lab in Chennai building shadow frames
               for the world. Built to cast shadows, not just hang.
