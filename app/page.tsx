@@ -30,11 +30,21 @@ export default function HomePage() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="relative rounded-lg overflow-hidden h-[75vh] flex items-center bg-obsidian"
         >
-          <img
-            src="https://images.pexels.com/photos/30720501/pexels-photo-30720501.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-            alt="3D printer in neon light"
-            className="absolute inset-0 w-full h-full object-cover opacity-55"
-          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <picture>
+            <source
+              srcSet="https://images.pexels.com/photos/30720501/pexels-photo-30720501.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+              type="image/webp"
+            />
+            <img
+              src="https://images.pexels.com/photos/30720501/pexels-photo-30720501.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+              alt="3D printer in neon light"
+              width={940}
+              height={650}
+              loading="eager"
+              className="absolute inset-0 w-full h-full object-cover opacity-55"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/60 to-transparent" />
           <div className="relative z-10 p-6 md:p-12 max-w-2xl">
             <motion.div
@@ -59,8 +69,9 @@ export default function HomePage() {
               transition={{ delay: 0.5 }}
               className="text-sm md:text-base text-concrete-dim max-w-md mb-8 leading-relaxed"
             >
-              3CM deep matte black shadow frames for anime walls.
-              HueForge layered. Gallery finish. No gloss, no gimmicks.
+              Built to cast shadows means 3CM deep matte black shadow
+              frames for anime walls. HueForge layered with a gallery
+              finish. No gloss, no gimmicks.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -102,21 +113,21 @@ export default function HomePage() {
 
       {/* Values Grid */}
       <section className="px-6 py-12 max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none m-0 p-0">
           {[
             { title: 'Depth Over Flat', desc: '3CM real shadow, not flat poster. Light hits it, shadows move.' },
             { title: 'Matte Over Gloss', desc: 'Gallery finish. No reflections from your monitor or LED strips.' },
             { title: 'Precision Over Speed', desc: "0.16mm layer height. Sanded edges. Every frame is QC'd by hand." },
             { title: 'Room Over Shelf', desc: 'Built for walls, not for shelves. 15x20cm. Ready to hang.' },
           ].map((v, idx) => (
-            <motion.div
+            <motion.li
               key={v.title}
               custom={idx}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="border border-obsidian/10 rounded-lg p-8 hover:border-brass/30 transition-colors bg-concrete"
+              className="border border-obsidian/10 rounded-lg p-8 hover:border-brass/30 transition-colors bg-concrete list-none"
             >
               <h3 className="text-lg font-serif-display font-bold text-obsidian mb-2">
                 {v.title}
@@ -124,23 +135,31 @@ export default function HomePage() {
               <p className="text-sm text-concrete-muted leading-relaxed">
                 {v.desc}
               </p>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* Featured Products */}
       <section className="px-6 py-12 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-8">
-          <h2 className="text-2xl md:text-3xl font-serif-display font-bold tracking-tight text-obsidian">
-            Shadow Sets
-          </h2>
-          <Link
-            href="/shop"
-            className="uppercase text-[10px] font-medium tracking-widest text-concrete-muted hover:text-brass transition-colors flex items-center gap-2"
-          >
-            Shop All <ArrowRight size={14} />
-          </Link>
+        <div className="mb-8">
+          <div className="flex justify-between items-end">
+            <h2 className="text-2xl md:text-3xl font-serif-display font-bold tracking-tight text-obsidian">
+              Shadow Sets
+            </h2>
+            <Link
+              href="/shop"
+              className="uppercase text-[10px] font-medium tracking-widest text-concrete-muted hover:text-brass transition-colors flex items-center gap-2"
+            >
+              Shop All <ArrowRight size={14} />
+            </Link>
+          </div>
+          <p className="text-sm text-concrete-muted leading-relaxed mt-4 max-w-2xl">
+            Shadow Sets are the lab&apos;s ready-to-hang wall frames —
+            15x20cm, 3CM deep, matte black. Every piece is printed,
+            hand-finished and QC&apos;d in Chennai, then shipped worldwide
+            tracked in a hard box.
+          </p>
         </div>
 
         {loading ? (
@@ -174,11 +193,18 @@ export default function HomePage() {
             >
               <Link href={`/shop/${prod.slug || prod.id}`} aria-label={prod.title} className="block">
                 <div className="bg-obsidian rounded-lg aspect-square overflow-hidden relative">
-                  <img
-                    src={prod.img}
-                    alt={prod.title}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <picture>
+                    <source srcSet={prod.img} type="image/webp" />
+                    <img
+                      src={prod.img}
+                      alt={prod.title}
+                      width={800}
+                      height={800}
+                      loading="lazy"
+                      className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    />
+                  </picture>
                   {prod.badge && (
                     <div className="absolute top-4 left-4 bg-brass text-obsidian text-[9px] font-bold px-2 py-1 uppercase rounded tracking-wider">
                       {prod.badge}
@@ -209,11 +235,21 @@ export default function HomePage() {
           className="bg-obsidian rounded-lg p-12 flex items-center justify-center min-h-[350px] relative overflow-hidden"
         >
           <div className="absolute inset-0 opacity-15">
-            <img
-              src="https://images.pexels.com/photos/19588204/pexels-photo-19588204.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-              alt="3D printer head"
-              className="w-full h-full object-cover"
-            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <picture>
+              <source
+                srcSet="https://images.pexels.com/photos/19588204/pexels-photo-19588204.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                type="image/webp"
+              />
+              <img
+                src="https://images.pexels.com/photos/19588204/pexels-photo-19588204.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                alt="3D printer head"
+                width={940}
+                height={650}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </picture>
           </div>
           <div className="relative z-10 text-center">
             <div className="text-6xl md:text-7xl font-serif-display font-bold tracking-tighter text-brass leading-[0.85]">
@@ -252,6 +288,80 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* Spec */}
+      <section className="px-6 py-12 max-w-5xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-serif-display font-bold tracking-tight text-obsidian mb-4">
+          Shadow Frame spec
+        </h2>
+        <p className="text-sm text-concrete-muted leading-relaxed mb-8 max-w-2xl">
+          Every Shadow Frame ships to the same spec — the numbers below are
+          the standard for each frame that leaves the Chennai lab, ready to
+          hang on your wall.
+        </p>
+        <div className="overflow-x-auto border border-obsidian/10 rounded-lg bg-concrete">
+          <table className="w-full text-sm">
+            <caption className="sr-only">
+              Standard specification of a Print Trek Shadow Frame
+            </caption>
+            <tbody className="divide-y divide-obsidian/10">
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4 w-1/3">Size</th>
+                <td className="p-4 text-obsidian">15x20cm, ready to hang</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Depth</th>
+                <td className="p-4 text-obsidian">3CM of real physical shadow</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Finish</th>
+                <td className="p-4 text-obsidian">Matte black, gallery finish, no gloss</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Relief</th>
+                <td className="p-4 text-obsidian">HueForge layered</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Layer height</th>
+                <td className="p-4 text-obsidian">0.16mm, sanded edges, hand QC</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Origin</th>
+                <td className="p-4 text-obsidian">Printed, finished and QC&apos;d in the Chennai lab</td>
+              </tr>
+              <tr>
+                <th scope="row" className="text-left font-medium uppercase tracking-widest text-[10px] text-brass p-4">Shipping</th>
+                <td className="p-4 text-obsidian">Tracked worldwide in a hard box</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* Lab promise */}
+      <section className="px-6 py-12 max-w-5xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-serif-display font-bold tracking-tight text-obsidian mb-4">
+          The lab promise
+        </h2>
+        <p className="text-sm text-concrete-muted leading-relaxed mb-8 max-w-2xl">
+          Buy wall art with confidence — every order carries the same three
+          promises from the Chennai lab.
+        </p>
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 list-none m-0 p-0">
+          <li className="border border-obsidian/10 rounded-lg p-6 bg-concrete">
+            <p className="text-sm font-medium text-obsidian mb-1">QC&apos;d one by one</p>
+            <p className="text-sm text-concrete-muted leading-relaxed">Every frame is hand-finished and quality-checked in our Chennai lab before it ships.</p>
+          </li>
+          <li className="border border-obsidian/10 rounded-lg p-6 bg-concrete">
+            <p className="text-sm font-medium text-obsidian mb-1">Damaged in transit? Replaced</p>
+            <p className="text-sm text-concrete-muted leading-relaxed">Send a photo within 7 days of delivery and a free replacement ships — no return needed.</p>
+          </li>
+          <li className="border border-obsidian/10 rounded-lg p-6 bg-concrete">
+            <p className="text-sm font-medium text-obsidian mb-1">Tracked door to door</p>
+            <p className="text-sm text-concrete-muted leading-relaxed">Every frame travels worldwide in a hard protective box — never a soft envelope.</p>
+          </li>
+        </ul>
+      </section>
+
       {/* CTA */}
       <section className="px-6 py-24 max-w-3xl mx-auto text-center">
         <motion.div
@@ -264,8 +374,9 @@ export default function HomePage() {
             Your wall is flat.<br />Fix that.
           </h2>
           <p className="text-sm text-concrete-muted mb-8 max-w-lg mx-auto">
-            The full collection lives here — every frame in stock, ready to
-            ship worldwide from the Chennai lab.
+            Fix that with a Shadow Set — the full collection lives here,
+            every frame in stock and ready to ship worldwide from the
+            Chennai lab.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link

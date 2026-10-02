@@ -33,7 +33,10 @@ export default function Navbar() {
             aria-label="Print Trek home"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="Print Trek" className="h-8 md:h-9 w-auto" />
+            <picture>
+              <source srcSet="/logo.webp" type="image/webp" />
+              <img src="/logo.png" alt="Print Trek" width={1862} height={845} className="h-8 md:h-9 w-auto" />
+            </picture>
           </Link>
         </div>
 
@@ -73,6 +76,8 @@ export default function Navbar() {
           <button
             className="md:hidden p-1.5 border border-obsidian/20 rounded-full"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
           </button>
@@ -121,7 +126,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           <div className="md:col-span-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-footer.png" alt="Print Trek — Precision 3D Lab" className="h-24 w-auto mb-6" />
+            <picture>
+              <source srcSet="/logo-footer.webp" type="image/webp" />
+              <img src="/logo-footer.png" alt="Print Trek — Precision 3D Lab" width={1521} height={1034} loading="lazy" className="h-24 w-auto mb-6" />
+            </picture>
             <p className="text-xs uppercase tracking-widest leading-loose text-concrete-muted">
               Print Trek. A precision 3D lab in Chennai building shadow frames
               for the world. Built to cast shadows, not just hang.
@@ -148,7 +156,7 @@ export function Footer() {
               <ul className="space-y-2 text-xs text-concrete-muted">
                 <li><a href="https://instagram.com/print_.trek" className="hover:text-brass transition-colors">@print_.trek</a></li>
                 <li><a href="mailto:hello@printtrek.store" className="hover:text-brass transition-colors">hello@printtrek.store</a></li>
-                <li><a href="https://printtrek.store" className="hover:text-brass transition-colors">printtrek.store</a></li>
+                <li><a href="https://www.printtrek.store" className="hover:text-brass transition-colors">printtrek.store</a></li>
               </ul>
             </div>
             <div>
@@ -159,6 +167,7 @@ export function Footer() {
                 <li><Link href="/shipping" className="hover:text-brass transition-colors">Shipping Policy</Link></li>
                 <li><Link href="/returns" className="hover:text-brass transition-colors">Returns & Refunds</Link></li>
                 <li><Link href="/terms" className="hover:text-brass transition-colors">Terms of Service</Link></li>
+                <li><Link href="/privacy" className="hover:text-brass transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/faq" className="hover:text-brass transition-colors">FAQ</Link></li>
               </ul>
             </div>
@@ -178,7 +187,10 @@ export function Footer() {
 
         <div className="flex justify-start md:justify-end">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Print Trek — Precision 3D Lab" className="h-24 w-auto mb-6" />
+          <picture>
+            <source srcSet="/logo.webp" type="image/webp" />
+            <img src="/logo.png" alt="Print Trek — Precision 3D Lab" width={1862} height={845} loading="lazy" className="h-24 w-auto mb-6" />
+          </picture>
         </div>
 
         <div className="border-t border-obsidian/10 mt-12 pt-6">

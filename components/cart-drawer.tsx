@@ -74,6 +74,7 @@ export default function CartDrawer() {
               </h2>
               <button
                 onClick={() => { setOpen(false); setPlaced(null); }}
+                aria-label="Close cart"
                 className="p-2 border border-obsidian/15 rounded-full hover:border-brass hover:text-brass"
               >
                 <X size={16} />
@@ -114,21 +115,21 @@ export default function CartDrawer() {
                   {items.map((i) => (
                     <div key={i.id} className="flex gap-3 items-center">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={i.img} alt={i.title} className="w-16 h-16 rounded object-cover bg-obsidian shrink-0" />
+                      <img src={i.img} alt={i.title} width={64} height={64} loading="lazy" className="w-16 h-16 rounded object-cover bg-obsidian shrink-0" />
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium truncate">{i.title}</p>
                         <p className="text-xs text-brass font-bold">${(i.price * i.qty).toFixed(2)}</p>
                         <div className="flex items-center gap-2 mt-1">
-                          <button onClick={() => setQty(i.id, i.qty - 1)} className="w-6 h-6 border border-obsidian/15 rounded-full flex items-center justify-center hover:border-brass">
+                          <button onClick={() => setQty(i.id, i.qty - 1)} aria-label={`Decrease quantity of ${i.title}`} className="w-6 h-6 border border-obsidian/15 rounded-full flex items-center justify-center hover:border-brass">
                             <Minus size={12} />
                           </button>
                           <span className="text-xs tabular-nums w-4 text-center">{i.qty}</span>
-                          <button onClick={() => setQty(i.id, i.qty + 1)} className="w-6 h-6 border border-obsidian/15 rounded-full flex items-center justify-center hover:border-brass">
+                          <button onClick={() => setQty(i.id, i.qty + 1)} aria-label={`Increase quantity of ${i.title}`} className="w-6 h-6 border border-obsidian/15 rounded-full flex items-center justify-center hover:border-brass">
                             <Plus size={12} />
                           </button>
                         </div>
                       </div>
-                      <button onClick={() => remove(i.id)} className="p-2 border border-obsidian/15 rounded-full hover:border-red-500 hover:text-red-500 shrink-0">
+                      <button onClick={() => remove(i.id)} aria-label={`Remove ${i.title} from cart`} className="p-2 border border-obsidian/15 rounded-full hover:border-red-500 hover:text-red-500 shrink-0">
                         <Trash2 size={13} />
                       </button>
                     </div>

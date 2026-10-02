@@ -125,7 +125,7 @@ export default function AboutPage() {
             <p className="text-[10px] font-medium tracking-widest uppercase text-brass mb-2">
               Store
             </p>
-            <a href="https://printtrek.store" className="text-sm hover:text-brass transition-colors">
+            <a href="https://www.printtrek.store" className="text-sm hover:text-brass transition-colors">
               printtrek.store
             </a>
           </div>
